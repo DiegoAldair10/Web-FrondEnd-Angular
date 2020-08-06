@@ -6,17 +6,25 @@ import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { BodyComponent } from './body/body.component';
+import { SliderComponent } from './slider/slider.component';
+
+/*NG Boostratp */
+import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
     HeaderComponent,
-    BodyComponent
+    BodyComponent,
+    SliderComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
