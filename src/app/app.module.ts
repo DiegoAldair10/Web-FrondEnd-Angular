@@ -11,8 +11,6 @@ import { SliderComponent } from './slider/slider.component';
 /*NG Boostratp */
 import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
