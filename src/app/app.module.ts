@@ -7,11 +7,9 @@ import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { BodyComponent } from './body/body.component';
 import { SliderComponent } from './slider/slider.component';
-
+import { HttpClientModule } from '@angular/common/http';
 /*NG Boostratp */
 import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { ProductosComponent } from './productos/productos.component';
-import { FormComponent } from './productos/form.component';
 
 
 
@@ -21,14 +19,13 @@ import { FormComponent } from './productos/form.component';
     FooterComponent,
     HeaderComponent,
     BodyComponent,
-    SliderComponent,
-    ProductosComponent,
-    FormComponent
+    SliderComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule
 
   ],
   providers: [],
