@@ -11,6 +11,7 @@ import { SliderComponent } from './slider/slider.component';
 /*NG Boostratp */
 import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ProductosComponent } from './productos/productos.component';
+import { FormComponent } from './productos/form/form.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ProductosComponent } from './productos/productos.component';
     HeaderComponent,
     BodyComponent,
     SliderComponent,
-    ProductosComponent
+    ProductosComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,
