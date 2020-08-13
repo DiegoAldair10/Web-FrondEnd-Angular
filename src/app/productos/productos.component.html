@@ -1,0 +1,69 @@
+
+<div class="container-fluid p-3">
+  <div class="card text-center">
+    <div class="card-header">
+     Tabla de  Productos
+    </div>
+    <div class="card-body">
+      <div class="my-2 text-left">
+        <button
+          class="btn btn-rounded btn-primary"
+          type="button"
+          [routerLink]="['/producto/form']"
+        >
+        <span class="fa fa-plus-square"></span>
+        </button>
+      </div>
+  <div class="container">
+    
+  </div>
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Fecha Producción</th>
+            <th>editar</th>
+            <th>eliminar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let producto of productos">
+            <td>{{producto.id}}</td>
+            <td>{{ producto.nombre }}</td>
+            <td>{{ producto.descripcion | uppercase }}</td>
+            <td>S/{{producto.precio }}</td>
+            <td>{{ producto.fechaPro | date: "EEEE dd, MMMM yyyy" }}</td>
+            <td>
+              <button
+                type="button"
+                name="editar"
+                [routerLink]="['/productos/form', producto.id]"
+                class="btn btn-primary btn-sm"
+              >
+              <span class="fa fa-refresh"></span>
+              </button>
+            </td>
+            <td>
+              <button
+                type="button"
+                name="eliminar"
+                (click)="delete(producto)"
+                class="btn btn-danger btn-sm"
+              >
+              <span class="fa fa-trash-o"></span>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <app-paginator *ngIf="paginador" [paginador]="paginador"></app-paginator>
+    </div>
+    <div class="card-footer text-muted">
+     2020
+    </div>
+  </div>
+  
+</div>

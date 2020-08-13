@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
@@ -10,7 +9,16 @@ import { SliderComponent } from './slider/slider.component';
 import { HttpClientModule } from '@angular/common/http';
 /*NG Boostratp */
 import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { ProductosComponent } from './productos/productos.component';
+import { FormComponent } from './productos/form.component';
+import {RouterModule , Routes } from '@angular/router';
+import { PaginatorComponent } from './paginator/paginator.component';
 
+
+const routes: Routes = [
+  {path: '', redirectTo: '/productos', pathMatch: 'full'},
+  {path: 'productos', component: ProductosComponent},
+];
 
 
 @NgModule({
@@ -19,11 +27,14 @@ import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
     FooterComponent,
     HeaderComponent,
     BodyComponent,
-    SliderComponent
+    SliderComponent,
+    ProductosComponent,
+    FormComponent,
+    PaginatorComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    RouterModule.forRoot(routes),
     NgbModule,
     HttpClientModule
 
