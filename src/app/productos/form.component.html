@@ -1,27 +1,74 @@
+<ul class="alert alert-danger" *ngIf="errores?.length > 0">
+    <li *ngFor="let err of errores">
+        {{ err }}
+    </li>
+</ul>
+
+<div class="container-fluid p-3">
 <div class="card text-center">
-    <div class="card-header">{{titulo}}</div>
-    <div class="card-body">
-        <form #productoFrom="ngForm">
-            <div class="form-row">
-              <div class="col">
-                  <label for="nombre">Nombre</label>
-                <input type="text" class="form-control" placeholder="First name">
-              </div>
+  <div class="card-header">{{ titulo }}</div>
+  <div class="card-body">
+    <form #productoFrom="ngForm">
+      <div class="form-row">
 
-              <div class="col">
-                <label for="nombre">Descripcion</label>
-                <input type="text" class="form-control" placeholder="Last name">
-              </div>
-
-              
-        
-
-
-
+        <div class="col">
+          <label for="nombre">Nombre</label>
+          <input type="text" class="form-control" [(ngModel)]="producto.nombre" name="nombre" #nombre="ngModel"/>
+            <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+                <div *ngIf="nombre.errors.required">
+                    Nombre es requerido
+                </div>
+                <div *ngIf="nombre.errors.minlength">
+                    Nombre debe tener al menos 4 caracteres
+                </div>
             </div>
-          </form>
-    </div>
-    <div class="card-footer text-muted">
-      2 days ago
-    </div>
+        </div>
+
+        <div class="col">
+          <label for="descripcion">Descripcion</label>
+          <input type="text" class="form-control" [(ngModel)]="producto.descripcion" name="descripcion"  #descripcion="ngModel"/>
+          <div class="alert alert-danger" *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)">
+            <div *ngIf="descripcion.errors.required">
+                Descripcion es requerido
+            </div>
+        </div>
+        </div>
+  
+      </div>
+      <div class="form-row p-3">
+        <div class="col">
+          <label for="precio">Precio</label>
+          <input type="text" class="form-control" [(ngModel)]="producto.precio" name="precio" #precio="ngModel"/>
+          <div class="alert alert-danger" *ngIf="precio.invalid && (precio.dirty || precio.touched)">
+            <div *ngIf="precio.errors.required">
+                Descripcion es requerido
+            </div>
+        </div>
+        </div>
+
+        <div class="col">
+           <label for="fechaPro">Fecha de Producción</label>
+          <input type="date" class="form-control" [(ngModel)]="producto.fechaPro" name="fechaPro" #fechaPro="ngModel" />
+        </div>  
+      </div>
+
+      <div class="form-group row">
+            <div class="col p-3">
+                <button class="btn btn-primary" role="button" (click)="create()" *ngIf="!producto.id; else elseBlock" [disabled]="!productoFrom.form.valid">
+                    Crear
+                </button>
+                <ng-template #elseBlock >
+                    <button class="btn btn-primary" role="button" (click)="update()" [disabled]="!productoFrom.form.valid">
+                        Crear
+                    </button>
+                </ng-template>
+            </div>
+      </div>
+
+    </form>
   </div>
+  <div class="card-footer text-muted">
+            2020
+  </div>
+</div>
+</div>

@@ -14,13 +14,12 @@ import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {RouterModule , Routes } from '@angular/router';
 import { PaginatorComponent } from './paginator/paginator.component';
 import { FormsModule} from '@angular/forms';
+/*Material*/
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
-// /*Material*/
-// import { MatMomentDateModule } from '@angular/material-moment-adapter';
-// import { MatDatepickerModule } from '@angular/material/datepicker';
-// import { MatAutocompleteModule } from '@angular/material/autocomplete';
-// import { MatInputModule } from '@angular/material/input';
-// import { MatFormFieldModule } from '@angular/material/form-field';
+
 
 
 
@@ -50,12 +49,10 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     NgbModule,
     HttpClientModule,
-     FormsModule
-    // MatDatepickerModule,
-    // MatMomentDateModule,
-    // MatAutocompleteModule,
-    // MatInputModule,
-    // MatFormFieldModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatMomentDateModule,
+    MatDatepickerModule
 
   ],
   providers: [],

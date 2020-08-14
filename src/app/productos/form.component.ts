@@ -10,8 +10,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./form.component.css'],
 })
 export class FormComponent implements OnInit {
-  private producto: Producto = new Producto();
-  titulo: string = 'Crear Producto';
+  public producto: Producto = new Producto();
+  titulo: string = 'Formulario Productos';
   errores: string[];
 
   constructor(
