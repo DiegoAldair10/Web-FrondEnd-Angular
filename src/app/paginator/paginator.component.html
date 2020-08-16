@@ -11,7 +11,7 @@
   
     <li *ngFor="let pagina of paginas" [ngClass]="pagina-1 == paginador.number? 'page-item active':'page-item'">
       <span class="page-link" *ngIf="pagina-1 == paginador.number">{{pagina}}</span>
-      <a *ngIf="pagina-1 != paginador.number" class="page-link" [routerLink]="['/productos./page', pagina-1]">{{pagina}}</a>
+      <a *ngIf="pagina-1 != paginador.number" class="page-link" [routerLink]="['/productos/page', pagina-1]">{{pagina}}</a>
     </li>
   
     <li [ngClass]="paginador.last?' disabled page-item': 'page-item'">

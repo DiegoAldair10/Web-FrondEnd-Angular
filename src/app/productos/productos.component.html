@@ -1,25 +1,68 @@
-
 <div class="container-fluid p-3">
   <div class="card text-center">
     <div class="card-header">
-     Tabla de  Productos
+      Tabla de Productos
     </div>
     <div class="card-body">
       <div class="my-2 text-left">
-
         <button
-          class="btn btn-rounded btn-primary"
+          class="btn btn-rounded btn-success"
           type="button"
           [routerLink]="['/productos/form']"
         >
-        <span class="fa fa-plus-square"></span>
+          <span class="fa fa-plus-square"> Crear Producto</span>
         </button>
-
       </div>
-  <div class="container">
-    
+      <div class="justify-content-center row d-flex">
+        <div class="card-inner card p-2 m-2" *ngFor="let producto of productos">
+          <img src="..." class="card-img-top" alt="..." />
+          <div class="card-body">
+            <div class="card-title crop-text-1">
+              <strong>{{ producto.nombre }}</strong>
+            </div>
+            <div class="description">
+              Descripción: {{ producto.descripcion | uppercase }}
+            </div>
+            <div class="description">Precio: S/{{ producto.precio }}</div>
+            <div class="description">
+              Fecha: {{ producto.fechaPro | date: "EEEE dd, MMMM yyyy" }}
+            </div>
+            <button
+              type="button"
+              name="editar"
+              [routerLink]="['/productos/form', producto.id]"
+              class="btn btn-warning btn-sm"
+            >
+              <span class="fa fa-pencil"></span>
+            </button>
+            <button
+              type="button"
+              name="eliminar"
+              (click)="delete(producto)"
+              class="btn btn-danger btn-sm"
+            >
+              <span class="fa fa-trash-o"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="pagination justify-content-center p-3">
+        <app-paginator
+          *ngIf="paginador"
+          [paginador]="paginador"
+        ></app-paginator>
+      </div>
+      <div class="card-footer text-muted">
+        2020
+      </div>
+    </div>
   </div>
-      <table class="table table-bordered table-striped">
+</div>
+
+<!--
+
+   <table class="table table-bordered table-striped">
         <thead>
           <tr>
             <th>#</th>
@@ -43,9 +86,9 @@
                 type="button"
                 name="editar"
                 [routerLink]="['/productos/form', producto.id]"
-                class="btn btn-primary btn-sm"
+                class="btn btn-warning btn-sm"
               >
-              <span class="fa fa-refresh"></span>
+              <span class="fa fa-pencil"></span>
               </button>
             </td>
             <td>
@@ -61,11 +104,4 @@
           </tr>
         </tbody>
       </table>
-      <app-paginator *ngIf="paginador" [paginador]="paginador"></app-paginator>
-    </div>
-    <div class="card-footer text-muted">
-     2020
-    </div>
-  </div>
-  
-</div>
+-->
