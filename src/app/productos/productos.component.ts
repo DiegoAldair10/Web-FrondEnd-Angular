@@ -18,7 +18,8 @@ export class ProductosComponent implements OnInit {
 
   constructor(
     private productoService: ProductoService,
-    private activateRoute: ActivatedRoute
+    private activateRoute: ActivatedRoute,
+    
   ) {}
 
   ngOnInit(): void {

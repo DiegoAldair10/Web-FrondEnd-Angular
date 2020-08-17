@@ -9,6 +9,8 @@ import { SliderComponent } from './slider/slider.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductosComponent } from './productos/productos.component';
 import { FormComponent } from './productos/form.component';
+import { DetalleComponent } from './productos/detalle/detalle.component';
+
 /*NG Boostratp */
 import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {RouterModule , Routes } from '@angular/router';
@@ -42,7 +44,8 @@ const routes: Routes = [
     SliderComponent,
     ProductosComponent,
     FormComponent,
-    PaginatorComponent
+    PaginatorComponent,
+    DetalleComponent
   ],
   imports: [
     BrowserModule,
