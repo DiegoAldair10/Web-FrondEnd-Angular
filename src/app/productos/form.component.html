@@ -33,25 +33,6 @@
           </div>
 
           <div class="col">
-            <label for="marca">Marca</label>
-            <input
-              type="text"
-              class="form-control"
-              [(ngModel)]="producto.marca"
-              name="marca"
-              #marca="ngModel"
-            />
-            <div
-              class="alert alert-danger"
-              *ngIf="marca.invalid && (marca.dirty || marca.touched)"
-            >
-              <div *ngIf="marca.errors.required">
-                Marca es requerido
-              </div>
-            </div>
-          </div>
-
-          <div class="col">
             <label for="descripcion">Descripcion</label>
             <input
               type="text"
