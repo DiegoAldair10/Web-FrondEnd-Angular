@@ -18,8 +18,7 @@ export class ProductosComponent implements OnInit {
 
   constructor(
     private productoService: ProductoService,
-    private activateRoute: ActivatedRoute,
-    
+    private activateRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -43,7 +42,17 @@ export class ProductosComponent implements OnInit {
           this.paginador = response;
         });
     });
+
+    // this.modalService.notificarUpload.subscribe((producto) => {
+    //   this.productos = this.productos.map((productoOriginal) => {
+    //     if (producto.id == productoOriginal.id) {
+    //       productoOriginal.foto = producto.foto;
+    //     }
+    //     return productoOriginal;
+    //   });
+    // });
   }
+
   delete(producto: Producto): void {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
@@ -65,16 +74,20 @@ export class ProductosComponent implements OnInit {
       })
       .then((result) => {
         if (result.value) {
-          this.productoService.delete(producto.id).subscribe(
-            response => {
-              this.productos = this.productos.filter(cli => cli !== producto)
-              swalWithBootstrapButtons.fire(
-                'Cliente Eliminado!',
-                `Cliente ${producto.nombre} eliminado con éxito.`,
-                'success'
+          this.productoService.delete(producto.id).subscribe((response) => {
+            this.productos = this.productos.filter((cli) => cli !== producto);
+            swalWithBootstrapButtons.fire(
+              'Cliente Eliminado!',
+              `Cliente ${producto.nombre} eliminado con éxito.`,
+              'success'
             );
           });
         }
       });
   }
+
+  // abriModal(producto: Producto) {
+  //   this.productoSeleccionado = producto;
+  //   this.modalService.abrirModal();
+  // }
 }

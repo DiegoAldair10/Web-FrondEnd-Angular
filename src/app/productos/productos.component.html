@@ -14,37 +14,41 @@
         </button>
       </div>
       <div class="justify-content-center row d-flex">
-        <div class="card-inner card p-2 m-2" *ngFor="let producto of productos">
-          <img src="..." class="card-img-top" alt="..." />
-          <div class="card-body">
-            <div class="card-title crop-text-1">
-              <strong>{{ producto.nombre }}</strong>
+        <a *ngFor="let producto of productos" width="600px">
+          <div class="card-inner card p-2 m-2">
+            l
+            <div class="card-body">
+              <div class="card-title crop-text-1">
+                <strong>{{ producto.nombre }}</strong>
+              </div>
+
+              <div class="description">Marca: {{ producto.marca }}</div>
+              <div class="description">
+                Descripción: {{ producto.descripcion | uppercase }}
+              </div>
+              <div class="description">Precio: S/{{ producto.precio }}</div>
+              <div class="description">
+                Fecha: {{ producto.fechaPro | date: "EEEE dd, MMMM yyyy" }}
+              </div>
+              <button
+                type="button"
+                name="editar"
+                [routerLink]="['/productos/form', producto.id]"
+                class="btn btn-warning btn-sm m-2"
+              >
+                <span class="fa fa-pencil"></span>
+              </button>
+              <button
+                type="button"
+                name="eliminar"
+                (click)="delete(producto)"
+                class="btn btn-danger btn-sm"
+              >
+                <span class="fa fa-trash-o"></span>
+              </button>
             </div>
-            <div class="description">
-              Descripción: {{ producto.descripcion | uppercase }}
-            </div>
-            <div class="description">Precio: S/{{ producto.precio }}</div>
-            <div class="description">
-              Fecha: {{ producto.fechaPro | date: "EEEE dd, MMMM yyyy" }}
-            </div>
-            <button
-              type="button"
-              name="editar"
-              [routerLink]="['/productos/form', producto.id]"
-              class="btn btn-warning btn-sm m-2" 
-            >
-              <span class="fa fa-pencil"></span>
-            </button>
-            <button
-              type="button"
-              name="eliminar"
-              (click)="delete(producto)"
-              class="btn btn-danger btn-sm"
-            >
-              <span class="fa fa-trash-o"></span>
-            </button>
           </div>
-        </div>
+        </a>
       </div>
 
       <div class="pagination justify-content-center p-3">
