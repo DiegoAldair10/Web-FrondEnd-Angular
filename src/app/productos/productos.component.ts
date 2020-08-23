@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { tap } from 'rxjs/operators';
 
 import Swal from 'sweetalert2';
+import { ModalService } from './detalle/modal.service';
 
 @Component({
   selector: 'app-productos',
@@ -18,6 +19,7 @@ export class ProductosComponent implements OnInit {
 
   constructor(
     private productoService: ProductoService,
+    private modalService: ModalService,
     private activateRoute: ActivatedRoute
   ) {}
 
@@ -43,14 +45,14 @@ export class ProductosComponent implements OnInit {
         });
     });
 
-    // this.modalService.notificarUpload.subscribe((producto) => {
-    //   this.productos = this.productos.map((productoOriginal) => {
-    //     if (producto.id == productoOriginal.id) {
-    //       productoOriginal.foto = producto.foto;
-    //     }
-    //     return productoOriginal;
-    //   });
-    // });
+    this.modalService.notificarUpload.subscribe((producto) => {
+      this.productos = this.productos.map((productoOriginal) => {
+        if (producto.id == productoOriginal.id) {
+          productoOriginal.foto = producto.foto;
+        }
+        return productoOriginal;
+      });
+    });
   }
 
   delete(producto: Producto): void {
@@ -86,8 +88,8 @@ export class ProductosComponent implements OnInit {
       });
   }
 
-  // abriModal(producto: Producto) {
-  //   this.productoSeleccionado = producto;
-  //   this.modalService.abrirModal();
-  // }
+  abrirModal(producto: Producto) {
+    this.productoSeleccionado = producto;
+    this.modalService.abrirModal();
+  }
 }

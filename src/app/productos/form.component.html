@@ -1,8 +1,10 @@
-<ul class="alert alert-danger" *ngIf="errores?.length > 0">
-  <li *ngFor="let err of errores">
-    {{ err }}
-  </li>
-</ul>
+<div class="container-fluid p-3">
+  <ul class="alert alert-danger" *ngIf="errores?.length > 0">
+    <li *ngFor="let err of errores">
+      {{ err }}
+    </li>
+  </ul>
+</div>
 
 <div class="container-fluid p-3">
   <div class="card text-center">

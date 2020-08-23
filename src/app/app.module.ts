@@ -23,6 +23,10 @@ import { ProductoService } from './productos/producto.service';
 
 import { registerLocaleData } from '@angular/common';
 import localeES from '@angular/common/locales/es';
+import { DetalleComponent } from './productos/detalle/detalle.component';
+import { AcercaComponent } from './acerca/acerca.component';
+import { ContactanosComponent } from './contactanos/contactanos.component';
+import { ServicioComponent } from './servicio/servicio.component';
 
 registerLocaleData(localeES, 'es');
 
@@ -44,6 +48,10 @@ const routes: Routes = [
     ProductosComponent,
     PaginatorComponent,
     FormComponent,
+    DetalleComponent,
+    AcercaComponent,
+    ContactanosComponent,
+    ServicioComponent,
   ],
   imports: [
     BrowserModule,

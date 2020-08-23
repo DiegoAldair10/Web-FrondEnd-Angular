@@ -1,34 +1,60 @@
+<detalle-producto
+  *ngIf="productoSeleccionado"
+  [producto]="productoSeleccionado"
+></detalle-producto>
+
 <div class="container-fluid p-3">
   <div class="card text-center">
-    <div class="card-header">
-      Tabla de Productos
-    </div>
-    <div class="card-body">
-      <div class="my-2 text-left">
-        <button
-          class="btn btn-rounded btn-success"
-          type="button"
-          [routerLink]="['/productos/form']"
-        >
-          <span class="fa fa-plus-square"> Crear Producto</span>
-        </button>
-      </div>
-      <div class="justify-content-center row d-flex">
-        <a *ngFor="let producto of productos" width="600px">
-          <div class="card-inner card p-2 m-2">
-            l
+    <div class="container p-3">
+      <div class="card-body"></div>
+        <div class="my-2 text-left">
+          <button
+            class="btn btn-rounded btn-success"
+            type="button"
+            [routerLink]="['/productos/form']"
+          >
+            <span class="fa fa-plus-square"> Crear Producto</span>
+          </button>
+        </div>
+        <div class="justify-content-center row d-flex">
+          <div
+            class="card-inner card p-2 m-2"
+            *ngFor="let producto of productos"
+          >
+            <div class="inner">
+              <img
+                (click)="abrirModal(producto)"
+                *ngIf="producto?.foto"
+                src="http://localhost:8080/web/uploads/img/{{ producto.foto }}"
+                alt="{{ producto.foto }}"
+                class="img-thumbnail rounded"
+                style="cursor: pointer;"
+                id="imagen"
+              />
+            </div>
+
+            <div class="inner">
+              <img
+                (click)="abrirModal(producto)"
+                *ngIf="!producto?.foto"
+                src="http://localhost:8080/images/baseline_sentiment_very_dissatisfied_black_36dp.png"
+                alt="Sin foto"
+                class="img-thumbnail rounded"
+                style="cursor: pointer;"
+                id="imagen"
+              />
+            </div>
+
             <div class="card-body">
               <div class="card-title crop-text-1">
                 <strong>{{ producto.nombre }}</strong>
               </div>
-
-              <div class="description">Marca: {{ producto.marca }}</div>
               <div class="description">
                 Descripción: {{ producto.descripcion | uppercase }}
               </div>
               <div class="description">Precio: S/{{ producto.precio }}</div>
               <div class="description">
-                Fecha: {{ producto.fechaPro | date: "EEEE dd, MMMM yyyy" }}
+                Fecha Publicada: {{ producto.fechaPro | date: "dd/MM/yyyy" }}
               </div>
               <button
                 type="button"
@@ -47,23 +73,21 @@
                 <span class="fa fa-trash-o"></span>
               </button>
             </div>
-          </div>
-        </a>
-      </div>
 
-      <div class="pagination justify-content-center p-3">
-        <app-paginator
-          *ngIf="paginador"
-          [paginador]="paginador"
-        ></app-paginator>
-      </div>
-      <div class="card-footer text-muted">
-        2020
-      </div>
+
+          </div>
+        </div>
+
+        <div class="pagination justify-content-center p-3">
+          <app-paginator
+            *ngIf="paginador"
+            [paginador]="paginador"
+          ></app-paginator>
+        </div>
+    
     </div>
   </div>
 </div>
-
 <!--
 
    <table class="table table-bordered table-striped">
