@@ -1,1 +1,132 @@
-<p>form works!</p>
+<div class="container-fluid p-3">
+  <ul class="alert alert-danger" *ngIf="errores?.length > 0">
+    <li *ngFor="let err of errores">
+      {{ err }}
+    </li>
+  </ul>
+</div>
+
+<div class="container-fluid p-3">
+  <div class="card text-center">
+    <div class="card-header">{{ titulo }}</div>
+    <div class="card-body">
+      <form #autoFrom="ngForm">
+        <div class="form-row">
+          <div class="col">
+            <label for="nombre">Nombre</label>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="auto.nombre"
+              name="nombre"
+              #nombre="ngModel"
+            />
+            <div
+              class="alert alert-danger"
+              *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)"
+            >
+              <div *ngIf="nombre.errors.required">Nombre es requerido</div>
+              <div *ngIf="nombre.errors.minlength">
+                Nombre debe tener al menos 4 caracteres
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <label for="modelo">Modelo</label>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="auto.modelo"
+              name="modelo"
+              #modelo="ngModel"
+            />
+            <div
+              class="alert alert-danger"
+              *ngIf="modelo.invalid && (modelo.dirty || modelo.touched)"
+            >
+              <div *ngIf="modelo.errors.required">Modelo es requerido</div>
+            </div>
+          </div>
+          <div class="col">
+            <label for="descripcion">Descripcion</label>
+            <textarea
+            class="form-control"
+              name="descripcion"
+              [(ngModel)]="auto.descripcion"
+              #descripcion="ngModel"
+              cols="10"
+              rows="1"
+            ></textarea>
+            <div
+              class="alert alert-danger"
+              *ngIf="
+                descripcion.invalid &&
+                (descripcion.dirty || descripcion.touched)
+              "
+            >
+              <div *ngIf="descripcion.errors.required">
+                Descripcion es requerido
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-row p-3">
+          <div class="col">
+            <label for="precio">Precio</label>
+            <input
+              type="number"
+              class="form-control"
+              [(ngModel)]="auto.precio"
+              name="precio"
+              #precio="ngModel"
+            />
+            <div
+              class="alert alert-danger"
+              *ngIf="precio.invalid && (precio.dirty || precio.touched)"
+            >
+              <div *ngIf="precio.errors.required">Precio es requerido</div>
+            </div>
+          </div>
+
+          <div class="col">
+            <label for="fecha_auto">Fecha de Producción</label>
+            <input
+              type="date"
+              class="form-control"
+              [(ngModel)]="auto.fecha_auto"
+              name="fecha_auto"
+              #fecha_auto="ngModel"
+            />
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col p-3">
+            <button
+              class="btn btn-info"
+              role="button"
+              (click)="create()"
+              *ngIf="!auto.id; else elseBlock"
+              [disabled]="!autoFrom.form.valid"
+            >
+              <span class="fa fa-check-square"> Crear</span>
+            </button>
+
+            <ng-template #elseBlock>
+              <button
+                class="btn btn-info"
+                role="button"
+                (click)="update()"
+                [disabled]="!autoFrom.form.valid"
+              >
+                <span class="fa fa-refresh"> Actualizar</span>
+              </button>
+            </ng-template>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="card-footer text-muted">2020</div>
+  </div>
+</div>

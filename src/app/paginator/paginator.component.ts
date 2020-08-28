@@ -30,14 +30,15 @@ export class PaginatorComponent implements OnInit {
   }
 
   private initPaginator(): void {
-    this.desde = Math.min(Math.max(1, this.paginador.number - 3), this.paginador.totalPages - 4);
-    this.hasta = Math.max(Math.min(this.paginador.totalPages, this.paginador.number + 3), 5);
+    this.desde = Math.min(Math.max(1, this.paginador.number - 6), this.paginador.totalPages - 7);
+    this.hasta = Math.max(Math.min(this.paginador.totalPages, this.paginador.number + 6), 8);
 
-    if (this.paginador.totalPages > 4) {
+
+    if (this.paginador.totalPages > 7) {
+
       this.paginas = new Array(this.hasta - this.desde + 1).fill(0).map((_valor, indice) => indice + this.desde);
     } else {
       this.paginas = new Array(this.paginador.totalPages).fill(0).map((_valor, indice) => indice + 1);
     }
   }
-
 }
