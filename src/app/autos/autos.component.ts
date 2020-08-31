@@ -3,7 +3,8 @@ import { Autos } from './autos';
 import { AutosService } from './autos.service';
 import { ActivatedRoute } from '@angular/router';
 import { tap } from 'rxjs/operators';
-import { ModalService } from './detalle/modal.service';
+import { ModalService } from '.././Modal/modal.service';
+
 import Swal from 'sweetalert2';
 
 @Component({

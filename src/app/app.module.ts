@@ -22,6 +22,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { registerLocaleData } from '@angular/common';
 import localeES from '@angular/common/locales/es';
 import { AutosService } from './autos/autos.service';
+import { ClientesComponent } from './clientes/clientes.component';
+import { FromComponent } from './clientes/from.component';
 
 registerLocaleData(localeES, 'es');
 
@@ -31,6 +33,8 @@ const routes: Routes = [
   { path: 'autos/page/:page', component: AutosComponent },
   { path: 'autos/form', component: FormComponent },
   { path: 'autos/form/:id', component: FormComponent },
+  { path: 'clientes', component: ClientesComponent},
+  { path: 'clientes/page/:page/', component: ClientesComponent},
 ];
 
 @NgModule({
@@ -42,6 +46,8 @@ const routes: Routes = [
     AutosComponent,
     FormComponent,
     DetalleComponent,
+    ClientesComponent,
+    FromComponent,
   ],
   imports: [
     BrowserModule,

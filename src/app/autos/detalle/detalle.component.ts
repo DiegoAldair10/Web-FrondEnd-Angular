@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Autos } from '../autos';
 import { AutosService } from '../autos.service';
-import { ModalService } from './modal.service';
+import { ModalService } from '../../Modal/modal.service';
 
 import Swal from 'sweetalert2';
 import { HttpEventType } from '@angular/common/http';
@@ -18,7 +18,7 @@ export class DetalleComponent implements OnInit {
   progreso: number = 0;
 
   constructor(private autosService: AutosService,
-              private modalService: ModalService) { }
+              public modalService: ModalService) { }
 
   ngOnInit(): void {}
 
