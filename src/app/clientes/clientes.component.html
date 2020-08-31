@@ -1,5 +1,5 @@
-<!-- <detalle-auto *ngIf="autoSeleccionado" [auto]="autoSeleccionado">
-</detalle-auto> -->
+<detalle-cliente *ngIf="clienteSeleccionado" [cliente]="clienteSeleccionado">
+</detalle-cliente> 
 
 <div class="container-fluid p-3">
   <div class="card text-center">
@@ -21,7 +21,7 @@
             <img
               (click)="abrirModal(cliente)"
               *ngIf="cliente?.foto"
-              src="http://localhost:8080/sistema/uploads/img/{{ cliente.foto }}"
+              src="http://localhost:8080/sistema/uploads/img/cli/{{ cliente.foto }}"
               alt="{{ cliente.foto }}"
               class="img-thumbnail rounded"
               style="cursor: pointer"
@@ -33,7 +33,7 @@
             <img
               (click)="abrirModal(cliente)"
               *ngIf="!cliente?.foto"
-              src="http://localhost:8080/clientes/baseline_sentiment_very_dissatisfied_black_36dp.png"
+              src="http://localhost:8080/images/user.png"
               alt="Sin foto"
               class="img-thumbnail rounded"
               style="cursor: pointer"
@@ -79,56 +79,9 @@
     </div>
   </div>
 </div>
-
-<!-- <div class="pagination justify-content-center p-3">
-  <app-paginator
+<div class="pagination justify-content-center p-3">
+  <app-paginator-clientes
     *ngIf="paginador"
     [paginador]="paginador"
-  ></app-paginator>
-</div> -->
-
-<!--
-
-   <table class="table table-bordered table-striped">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Nombre</th>
-            <th>Descripción</th>
-            <th>Precio</th>
-            <th>Fecha Producción</th>
-            <th>editar</th>
-            <th>eliminar</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let producto of productos">
-            <td>{{producto.id}}</td>
-            <td>{{ producto.nombre }}</td>
-            <td>{{ producto.descripcion | uppercase }}</td>
-            <td>S/{{producto.precio }}</td>
-            <td>{{ producto.fechaPro | date: "EEEE dd, MMMM yyyy" }}</td>
-            <td>
-              <button
-                type="button"
-                name="editar"
-                [routerLink]="['/productos/form', producto.id]"
-                class="btn btn-warning btn-sm"
-              >
-              <span class="fa fa-pencil"></span>
-              </button>
-            </td>
-            <td>
-              <button
-                type="button"
-                name="eliminar"
-                (click)="delete(producto)"
-                class="btn btn-danger btn-sm"
-              >
-              <span class="fa fa-trash-o"></span>
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
--->
+  ></app-paginator-clientes>
+</div>

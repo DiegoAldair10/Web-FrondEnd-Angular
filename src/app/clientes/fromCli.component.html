@@ -1,0 +1,145 @@
+<div class="container-fluid p-3">
+  <ul class="alert alert-danger" *ngIf="errores?.length > 0">
+    <li *ngFor="let err of errores">
+      {{ err }}
+    </li>
+  </ul>
+</div>
+
+<div class="container-fluid p-3">
+  <div class="card text-center">
+    <div class="card-header">{{ titulo }}</div>
+    <div class="card-body">
+      <form #clienteFrom="ngForm">
+        <div class="form-row">
+          <div class="col">
+            <label for="nombre">Nombre</label>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="cliente.nombre"
+              name="nombre"
+              #nombre="ngModel"
+            />
+            <div
+              class="alert alert-danger"
+              *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)"
+            >
+              <div *ngIf="nombre.errors.required">Nombre es requerido</div>
+              <div *ngIf="nombre.errors.minlength">
+                Nombre debe tener al menos 4 caracteres
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <label for="apellido">Apellido</label>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="cliente.apellido"
+              name="apellido"
+              #apellido="ngModel"
+            />
+            <div
+              class="alert alert-danger"
+              *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)"
+            >
+              <div *ngIf="apellido.errors.required">apellido es requerido</div>
+            </div>
+          </div>
+
+          <div class="col">
+            <label for="dni">DNI</label>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="cliente.dni"
+              name="dni"
+              #dni="ngModel"
+            />
+            <div
+              class="alert alert-danger"
+              *ngIf="dni.invalid && (dni.dirty || dni.touched)"
+            >
+              <div *ngIf="dni.errors.required">dni es requerido</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row p-3">
+          <div class="col">
+            <label for="telefono">Telefono</label>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="cliente.telefono"
+              name="telefono"
+              #telefono="ngModel"
+            />
+            <div
+              class="alert alert-danger"
+              *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)"
+            >
+              <div *ngIf="telefono.errors.required">Telefono es requerido</div>
+            </div>
+          </div>
+
+          <div class="col">
+            <label for="distrito">Distrito</label>
+            <select
+              [compareWith]="compararDistrito"
+              class="form-control"
+              [(ngModel)]="cliente.distrito"
+              name="distrito"
+            >
+              <option [ngValue]="undefined">
+                --- selecionar una distrito ---
+              </option>
+              <option *ngFor="let distrito of distritos" [ngValue]="distrito">
+                {{ distrito.nombre }}
+              </option>
+            </select>
+          </div>
+
+          <div class="col">
+            <label for="fecha">Fecha de Nacimiento</label>
+            <input
+              type="date"
+              class="form-control"
+              [(ngModel)]="cliente.fecha"
+              name="fecha"
+              #fecha="ngModel"
+            />
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col p-3">
+            <button
+              class="btn btn-info"
+              role="button"
+              (click)="create()"
+              *ngIf="!cliente.id; else elseBlock"
+              [disabled]="!clienteFrom.form.valid"
+            >
+              <span class="fa fa-check-square"> Crear</span>
+            </button>
+
+            <ng-template #elseBlock>
+              <button
+                class="btn btn-info"
+                role="button"
+                (click)="update()"
+                [disabled]="!clienteFrom.form.valid"
+              >
+                <span class="fa fa-refresh"> Actualizar</span>
+              </button>
+            </ng-template>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="card-footer text-muted">2020</div>
+  </div>
+</div>

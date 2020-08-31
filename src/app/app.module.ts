@@ -9,6 +9,12 @@ import { AutosComponent } from './autos/autos.component';
 import { PaginatorComponent } from './paginator/paginator.component';
 import { FormComponent } from './autos/form.component';
 import { DetalleComponent } from './autos/detalle/detalle.component';
+import {DetalleCliComponent} from './clientes/detalle/detalleCli.component';
+import { AutosService } from './autos/autos.service';
+import { ClientesComponent } from './clientes/clientes.component';
+import { FromCliComponent } from './clientes/fromCli.component';
+import { PaginatorClientesComponent } from './paginator-clientes/paginator-clientes.component';
+
 
 /*NG Boostratp */
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -21,9 +27,6 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 
 import { registerLocaleData } from '@angular/common';
 import localeES from '@angular/common/locales/es';
-import { AutosService } from './autos/autos.service';
-import { ClientesComponent } from './clientes/clientes.component';
-import { FromComponent } from './clientes/from.component';
 
 registerLocaleData(localeES, 'es');
 
@@ -34,7 +37,11 @@ const routes: Routes = [
   { path: 'autos/form', component: FormComponent },
   { path: 'autos/form/:id', component: FormComponent },
   { path: 'clientes', component: ClientesComponent},
-  { path: 'clientes/page/:page/', component: ClientesComponent},
+  { path: 'clientes/page/:page', component: ClientesComponent},
+  { path: 'clientes/form', component: FromCliComponent},
+  { path: 'clientes/form/:id', component: FromCliComponent},
+  
+  
 ];
 
 @NgModule({
@@ -47,7 +54,9 @@ const routes: Routes = [
     FormComponent,
     DetalleComponent,
     ClientesComponent,
-    FromComponent,
+    FromCliComponent,
+    PaginatorClientesComponent,
+    DetalleCliComponent
   ],
   imports: [
     BrowserModule,

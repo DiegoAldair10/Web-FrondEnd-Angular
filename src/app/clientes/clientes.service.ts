@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { Clientes } from './clientes';
 import { tap, map, catchError } from 'rxjs/operators';
+import { Distrito } from './detalle/distrito';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +13,11 @@ export class ClientesService {
   private urlEndPoint: string = 'http://localhost:8080/sistema/clientes';
 
   constructor(private http: HttpClient, private router: Router) {}
+
+
+  getDistrito(): Observable<Distrito[]> {
+    return this.http.get<Distrito[]>(this.urlEndPoint + '/distritos');
+  }
 
   getProductos(page: number): Observable<any> {
     return this.http.get(this.urlEndPoint + '/page/' + page).pipe(
@@ -100,7 +106,7 @@ export class ClientesService {
 
     const req = new HttpRequest(
       'POST',
-      `${this.urlEndPoint}/upload`,
+      `${this.urlEndPoint}/uploads`,
       formData,
       {
         reportProgress: true,

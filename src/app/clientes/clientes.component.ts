@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Clientes} from './clientes';
-import { ClientesService} from './clientes.service';
+import { Clientes } from './clientes';
+import { ClientesService } from './clientes.service';
 import { ActivatedRoute } from '@angular/router';
 import { tap } from 'rxjs/operators';
 import Swal from 'sweetalert2';
@@ -9,7 +9,7 @@ import { ModalService } from '.././Modal/modal.service';
 @Component({
   selector: 'app-clientes',
   templateUrl: './clientes.component.html',
-  styleUrls: ['./clientes.component.css']
+  styleUrls: ['./clientes.component.css'],
 })
 export class ClientesComponent implements OnInit {
   clientes: Clientes[];
@@ -17,10 +17,10 @@ export class ClientesComponent implements OnInit {
   clienteSeleccionado: Clientes;
 
   constructor(
-      private clientesService: ClientesService,
-      private activateRoute: ActivatedRoute,
-      private modalService: ModalService
-  ) { }
+    private clientesService: ClientesService,
+    private activateRoute: ActivatedRoute,
+    private modalService: ModalService
+  ) {}
 
   ngOnInit(): void {
     this.activateRoute.paramMap.subscribe((params) => {
@@ -52,7 +52,6 @@ export class ClientesComponent implements OnInit {
       });
     });
   }
-
 
   delete(cliente: Clientes): void {
     const swalWithBootstrapButtons = Swal.mixin({
@@ -87,13 +86,8 @@ export class ClientesComponent implements OnInit {
       });
   }
 
-
-
   abrirModal(cliente: Clientes) {
     this.clienteSeleccionado = cliente;
     this.modalService.abrirModal();
   }
-
-
-
 }
