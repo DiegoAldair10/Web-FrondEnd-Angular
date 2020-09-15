@@ -1,4 +1,6 @@
 import { Distrito } from './detalle/distrito';
+import { Factura } from '../facturas/models/factura';
+
 
 export class Clientes {
   id: number;
@@ -9,5 +11,5 @@ export class Clientes {
   fecha: string;
   foto: string;
   distrito: Distrito;
-  // alquiler:Arry<Alquiler>=[];
+  facturas: Array<Factura> = [];
 }

@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h3 class="modal-title">{{ titulo }}</h3>
+          <h2 class="modal-title">{{ titulo }}</h2>
           <button
             (click)="cerrarModal()"
             type="button"
@@ -22,11 +22,10 @@
                   <li class="list-group-item active">{{ cliente.nombre }}</li>
                   <li class="list-group-item">{{ cliente.apellido }}</li>
                   <li class="list-group-item">{{ cliente.dni }}</li>
-                  <li class="list-group-item">{{ cliente.telefono }}</li>
-                  <li class="list-group-item">{{ cliente.distrito.nombre }}</li>
                   <li class="list-group-item">
                     {{ cliente.fecha | date: "fullDate" }}
                   </li>
+                  <li class="list-group-item">{{ cliente.distrito.nombre }}</li>
                 </ul>
 
                 <div class="input-group mb-3">
@@ -80,17 +79,69 @@
                 />
               </div>
             </div>
-            <div class="modal-footer">
-              <button
-                (click)="cerrarModal()"
-                type="button"
-                class="btn btn-secondary"
-                data-dismiss="modal"
+
+            <div class="row">
+              <div
+                class="alert alert-info my-2"
+                *ngIf="cliente.facturas.length == 0"
               >
-                Cerrar
-              </button>
+                No hay facturas asignadas para el cliente {{ cliente.nombre }}
+                {{ cliente.apellido }}
+              </div>
+
+              <table
+                class="table table-bordered table-striped my-2"
+                *ngIf="cliente.facturas.length > 0"
+              >
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Descripción</th>
+                    <th>Fecha de alquiler</th>
+                    <th>Total</th>
+                    <th>Detalle</th>
+                    <th>Eliminar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let factura of cliente.facturas">
+                    <td>{{ factura.id }}</td>
+                    <td>{{ factura.descripcion }}</td>
+                    <td>{{ factura.fechaAlqui }}</td>
+                    <td>{{ factura.total }}</td>
+                    <td>
+                      <button
+                        class="btn btn-success btn-sm"
+                        type="button"
+                        [routerLink]="['/facturas', factura.id]"
+                      >
+                        <span class="fa fa-eye" aria-hidden="true"></span>
+                      </button>
+                    </td>
+                    <td>
+                      <button
+                        class="btn btn-danger btn-sm"
+                        type="button"
+                        (click)="delete(factura)"
+                      >
+                        <span class="fa fa-trash-o"></span>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            (click)="cerrarModal()"
+            type="button"
+            class="btn btn-secondary"
+            data-dismiss="modal"
+          >
+            Close
+          </button>
         </div>
       </div>
     </div>

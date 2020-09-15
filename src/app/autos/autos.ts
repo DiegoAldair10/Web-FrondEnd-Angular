@@ -4,7 +4,7 @@ export class Autos {
     nombre:string;
     modelo:string;
     descripcion:string;
-    precio:string;
+    precio:number;
     fecha_auto:string;
     foto:string;
 

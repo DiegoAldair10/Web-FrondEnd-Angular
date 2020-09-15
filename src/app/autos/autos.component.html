@@ -58,7 +58,7 @@
               type="button"
               name="editar"
               [routerLink]="['/autos/form', auto.id]"
-              class="btn btn-warning btn-sm m-2"
+              class="btn btn-warning btn-sm m-1"
             >
               <span class="fa fa-pencil"></span>
             </button>
@@ -66,10 +66,18 @@
               type="button"
               name="eliminar"
               (click)="delete(auto)"
-              class="btn btn-danger btn-sm"
+              class="btn btn-danger btn-sm m-2"
             >
               <span class="fa fa-trash-o"></span>
             </button>
+            <button
+            type="button"
+            class="btn btn-success btn-sm"
+            [routerLink]="['/facturas/form', auto.id]"
+          >
+            <span class="fa fa-file" aria-hidden="true"></span>
+          </button>
+            
           </div>
         </div>
       </div>

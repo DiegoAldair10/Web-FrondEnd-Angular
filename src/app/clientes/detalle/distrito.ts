@@ -1,6 +1,4 @@
-export class Distrito {
-
-    id:number;
-    nombre:string;
-
+export class Distrito{
+    id: number;
+    nombre: string;
 }

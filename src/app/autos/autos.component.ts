@@ -6,6 +6,7 @@ import { tap } from 'rxjs/operators';
 import { ModalService } from '.././Modal/modal.service';
 
 import Swal from 'sweetalert2';
+import { Clientes } from '../clientes/clientes';
 
 @Component({
   selector: 'app-autos',
@@ -16,6 +17,8 @@ export class AutosComponent implements OnInit {
   autos: Autos[];
   paginador: any;
   autoSeleccionado: Autos;
+  
+  
 
   constructor(
     private autosServicio: AutosService,

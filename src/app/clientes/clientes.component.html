@@ -1,6 +1,5 @@
 <detalle-cliente *ngIf="clienteSeleccionado" [cliente]="clienteSeleccionado">
-</detalle-cliente> 
-
+</detalle-cliente>
 <div class="container-fluid p-3">
   <div class="card text-center">
     <div class="card-header">Listado de Clientes</div>
@@ -21,7 +20,9 @@
             <img
               (click)="abrirModal(cliente)"
               *ngIf="cliente?.foto"
-              src="http://localhost:8080/sistema/uploads/img/cli/{{ cliente.foto }}"
+              src="http://localhost:8080/sistema/uploads/img/cli/{{
+                cliente.foto
+              }}"
               alt="{{ cliente.foto }}"
               class="img-thumbnail rounded"
               style="cursor: pointer"
@@ -33,7 +34,7 @@
             <img
               (click)="abrirModal(cliente)"
               *ngIf="!cliente?.foto"
-              src="http://localhost:8080/images/user.png"
+              src="http://localhost:8080/images/baseline_sentiment_very_dissatisfied_black_36dp.png"
               alt="Sin foto"
               class="img-thumbnail rounded"
               style="cursor: pointer"
@@ -61,7 +62,7 @@
               type="button"
               name="editar"
               [routerLink]="['/clientes/form', cliente.id]"
-              class="btn btn-warning btn-sm m-2"
+              class="btn btn-warning btn-sm m-1"
             >
               <span class="fa fa-pencil"></span>
             </button>
@@ -69,9 +70,17 @@
               type="button"
               name="eliminar"
               (click)="delete(cliente)"
-              class="btn btn-danger btn-sm"
+              class="btn btn-danger btn-sm m-2"
             >
               <span class="fa fa-trash-o"></span>
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-success btn-sm"
+              [routerLink]="['/facturas/form', cliente.id]"
+            >
+              <span class="fa fa-file" aria-hidden="true"></span>
             </button>
           </div>
         </div>
