@@ -1,41 +1,80 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">
-    <img
-      src="https://i.ibb.co/5rfSPJj/Black-and-Red-Cool-and-Funky-Gaming-Logo.png"
-      alt="Black-and-Red-Cool-and-Funky-Gaming-Logo"
-      style="width: 100px; height: 50px;"
-    />
-  </a>
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarTogglerDemo02"
-    aria-controls="navbarTogglerDemo02"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<mat-toolbar class="header" id="color">
+  <div class="m-2 text-center" style="color: white">ALQUILER DE AUTOS</div>
 
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/autos']">AUTOS</a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/clientes">CLIENTES</a>
+  <section id="hambur" class="mat-typography title-group">
+    <mat-icon (click)="sidenav.toggle()" class="hamburger">apps </mat-icon>
+  </section>
+
+  <span class="nav-tool-items">
+    <ul class="navbar-nav navbar navbar-right">
+      <li *ngIf="!authService.isAuthenticated()">
+        <a id="icons" [routerLink]="['/login']"><mat-icon>person</mat-icon></a>
       </li>
 
-      <li class="nav-item">
-        <a class="nav-link" href="#">ACERCA DE</a>
+      <li *ngIf="authService.isAuthenticated()" class="dropdown">
+        <a
+          class="btn btn-outline-primary dropdown-toggle"
+          href="#"
+          role="button"
+          id="dropdownMenuLink"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          {{ authService.usuario.username }}
+        </a>
+
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <button (click)="logout()" class="dropdown-item" type="submit">
+            Salir
+          </button>
+        </div>
       </li>
     </ul>
-    <!-- <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" />
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-        Search
-      </button>
-    </form> -->
-  </div>
-</nav>
+  </span>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav
+    class="colores"
+    #sidenav
+    [mode]="isBiggerScreen() ? 'over' : 'side'"
+    [(opened)]="opened"
+    [fixedInViewport]="true"
+    [fixedTopGap]
+  >
+    <mat-nav-list>
+      <a
+        id="icons"
+        mat-list-item
+        [routerLink]="['/autos']"
+        [routerLinkActive]="'is-active'"
+        ><mat-icon>directions_car</mat-icon> Autos</a
+      >
+      <a
+        id="icons"
+        mat-list-item
+        [routerLink]="['/clientes']"
+        [routerLinkActive]="'is-active'"
+      >
+        <mat-icon>person</mat-icon> Clientes</a
+      >
+
+      <a
+        id="icons"
+        mat-list-item
+        [routerLink]="['/facturas']"
+        [routerLinkActive]="'is-active'"
+      >
+        <mat-icon>text_snippet</mat-icon> Facturas</a
+      >
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <!-- Add Content Here -->
+    <div style="padding: 15px">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

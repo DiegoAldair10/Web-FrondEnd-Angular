@@ -1,4 +1,19 @@
-.card-text {
+table {
+  width: 100%;
+}
+
+.example-button-row button,
+.example-button-row a {
+  margin-right: 8px;
+}
+
+
+/* #color{
+  background-color:#00600f;
+  color: #FFFFFF;
+} */
+
+/* .card-text {
     word-wrap: break-word;
   }
   
@@ -24,11 +39,11 @@
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-  }
+  } */
   /* .container {
     margin-top: 8%;
   } */
-  
+/*   
   .inner {
     overflow: hidden;
   }
@@ -39,5 +54,5 @@
   
   .inner:hover img {
     transform: scale(1.5);
-  }
+  } */
   

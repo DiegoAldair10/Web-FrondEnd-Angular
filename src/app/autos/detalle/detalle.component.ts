@@ -5,20 +5,23 @@ import { ModalService } from '../../Modal/modal.service';
 
 import Swal from 'sweetalert2';
 import { HttpEventType } from '@angular/common/http';
+import { AuthService } from 'src/app/usuarios/auth.service';
 @Component({
   selector: 'detalle-auto',
   templateUrl: './detalle.component.html',
-  styleUrls: ['./detalle.component.css']
+  styleUrls: ['./detalle.component.css'],
 })
 export class DetalleComponent implements OnInit {
-
   @Input() auto: Autos;
   titulo: string = 'Detalle del Auto';
   fotoSeleccionada: File;
   progreso: number = 0;
 
-  constructor(private autosService: AutosService,
-              public modalService: ModalService) { }
+  constructor(
+    private autosService: AutosService,
+    public authService: AuthService,
+    public modalService: ModalService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -35,7 +38,7 @@ export class DetalleComponent implements OnInit {
       this.fotoSeleccionada = null;
     }
   }
-  
+
   subirFoto() {
     if (!this.fotoSeleccionada) {
       Swal.fire('Error Upload :', 'debe seleccionar una foto', 'error');
@@ -58,10 +61,10 @@ export class DetalleComponent implements OnInit {
         });
     }
   }
+
   cerrarModal() {
     this.modalService.cerrarModal();
     this.fotoSeleccionada = null;
     this.progreso = 0;
   }
 }
-

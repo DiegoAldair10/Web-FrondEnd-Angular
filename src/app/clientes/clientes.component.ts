@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Clientes } from './clientes';
 import { ClientesService } from './clientes.service';
 import { ActivatedRoute } from '@angular/router';
@@ -6,19 +6,31 @@ import { tap } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { ModalService } from '.././Modal/modal.service';
 
+import {MatSort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { AuthService } from '../usuarios/auth.service';
+
+
 @Component({
   selector: 'app-clientes',
   templateUrl: './clientes.component.html',
   styleUrls: ['./clientes.component.css'],
 })
 export class ClientesComponent implements OnInit {
-  clientes: Clientes[];
+
+  @ViewChild(MatSort) sort: MatSort;
+  displayedColumns: string[] = ['id', 'Nombre','Apellido','Dni','Fecha','Detalle','Editar','Eliminar'];
+  
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  clientes: Clientes[]  ;
   paginador: any;
   clienteSeleccionado: Clientes;
 
   constructor(
     private clientesService: ClientesService,
     private activateRoute: ActivatedRoute,
+    public authService: AuthService,
     private modalService: ModalService
   ) {}
 
@@ -90,4 +102,5 @@ export class ClientesComponent implements OnInit {
     this.clienteSeleccionado = cliente;
     this.modalService.abrirModal();
   }
+
 }

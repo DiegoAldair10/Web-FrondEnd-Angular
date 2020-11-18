@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DetalleFacturaComponent implements OnInit {
   factura: Factura;
-  titulo: string = 'Factura';
+  titulo: string = 'DETALLE DEL ALQUILER';
 
   constructor(
     private facturaService: FacturaService,

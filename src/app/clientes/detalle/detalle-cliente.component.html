@@ -2,12 +2,12 @@
   <div class="modal" tabindex="-1" role="dialog" style="display: block">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
-        <div class="modal-header">
-          <h2 class="modal-title">{{ titulo }}</h2>
+        <div class="modal-header bg-secondary">
+          <h2 class="modal-title text-light">{{ titulo }}</h2>
           <button
             (click)="cerrarModal()"
             type="button"
-            class="close"
+            class="close text-light"
             data-dismiss="modal"
             aria-label="Close"
           >
@@ -19,16 +19,29 @@
             <div class="row">
               <div class="col-sm">
                 <ul *ngIf="cliente" class="list-group text-dark mb-3">
-                  <li class="list-group-item active">{{ cliente.nombre }}</li>
-                  <li class="list-group-item">{{ cliente.apellido }}</li>
-                  <li class="list-group-item">{{ cliente.dni }}</li>
+                  <li class="list-group-item bg-secondary text-light">
+                    <strong>Nombre : </strong> {{ cliente.nombre }}
+                  </li>
                   <li class="list-group-item">
+                    <strong>Apellido : </strong> {{ cliente.apellido }}
+                  </li>
+                  <li class="list-group-item">
+                    <strong>Dni : </strong> {{ cliente.dni }}
+                  </li>
+                  <li class="list-group-item">
+                    <strong>Fecha.Nacimeinto : </strong>
                     {{ cliente.fecha | date: "fullDate" }}
                   </li>
-                  <li class="list-group-item">{{ cliente.distrito.nombre }}</li>
+                  <li class="list-group-item">
+                    <strong>Distrito : </strong>
+                    {{ cliente.distrito.nombre }}
+                  </li>
                 </ul>
 
-                <div class="input-group mb-3">
+                <div
+                  class="input-group mb-3"
+                  *ngIf="authService.hasRole('ROLE_ADMIN')"
+                >
                   <div class="custom-file">
                     <input
                       (change)="seleccionarFoto($event)"
@@ -68,16 +81,21 @@
                 </div>
               </div>
 
-              <div class="col-sm">
+              <div class="col-sm-5">
                 <img
                   *ngIf="cliente?.foto"
-                  src="http://localhost:8080/sistema/uploads/img/cli/{{
+                  src="http://localhost:8086/sistema/uploads/img/cli/{{
                     cliente.foto
                   }}"
                   alt="{{ cliente.foto }}"
                   class="img-thumbnail rounded"
                 />
               </div>
+            </div>
+
+            <!-- <div class="row">
+              <button type="button" class="btn btn-success btn-sm" [routerLink]="['/facturas/form', cliente.id]">Crear
+                Factura</button>
             </div>
 
             <div class="row">
@@ -129,8 +147,8 @@
                     </td>
                   </tr>
                 </tbody>
-              </table>
-            </div>
+              </table> 
+            </div> -->
           </div>
         </div>
         <div class="modal-footer">

@@ -22,7 +22,7 @@ import { Autos } from '../autos/autos';
   styleUrls: ['./facturas.component.css'],
 })
 export class FacturasComponent implements OnInit {
-  titulo: string = 'Nueva Factura';
+  titulo: string = 'NUEVO ALQUILER ';
   factura: Factura = new Factura();
   autocompleteControl = new FormControl();
   autosFiltrado: Observable<Autos[]>;
@@ -131,4 +131,5 @@ export class FacturasComponent implements OnInit {
       });
     }
   }
+  
 }

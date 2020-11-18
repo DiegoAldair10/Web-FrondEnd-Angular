@@ -3,6 +3,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Factura } from 'src/app/facturas/models/factura';
 import { FacturaService } from 'src/app/facturas/services/factura.service';
 import { ModalService } from 'src/app/Modal/modal.service';
+import { AuthService } from 'src/app/usuarios/auth.service';
+
 import Swal from 'sweetalert2';
 import { Clientes } from '../clientes';
 import { ClientesService } from '../clientes.service';
@@ -21,7 +23,9 @@ export class DetalleClienteComponent implements OnInit {
   constructor(
     private clienteService: ClientesService,
     private facturaService: FacturaService,
+    public authService: AuthService,
     public modalService: ModalService
+
   ) {}
 
   ngOnInit(): void {}

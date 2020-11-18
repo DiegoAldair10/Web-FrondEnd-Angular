@@ -5,141 +5,110 @@
     </li>
   </ul>
 </div>
+<br />
+<mat-card-title class="text-center">Formulario de Clientes</mat-card-title>
 
-<div class="container-fluid p-3">
-  <div class="card text-center">
-    <div class="card-header">{{ titulo }}</div>
-    <div class="card-body">
-      <form #clienteFrom="ngForm">
-        <div class="form-row">
-          <div class="col">
-            <label for="nombre">Nombre</label>
-            <input
-              type="text"
-              class="form-control"
-              [(ngModel)]="cliente.nombre"
-              name="nombre"
-              #nombre="ngModel"
-            />
-            <div
-              class="alert alert-danger"
-              *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)"
-            >
-              <div *ngIf="nombre.errors.required">Nombre es requerido</div>
-              <div *ngIf="nombre.errors.minlength">
-                Nombre debe tener al menos 4 caracteres
-              </div>
-            </div>
-          </div>
-
-          <div class="col">
-            <label for="apellido">Apellido</label>
-            <input
-              type="text"
-              class="form-control"
-              [(ngModel)]="cliente.apellido"
-              name="apellido"
-              #apellido="ngModel"
-            />
-            <div
-              class="alert alert-danger"
-              *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)"
-            >
-              <div *ngIf="apellido.errors.required">apellido es requerido</div>
-            </div>
-          </div>
-
-          <div class="col">
-            <label for="dni">DNI</label>
-            <input
-              type="text"
-              class="form-control"
-              [(ngModel)]="cliente.dni"
-              name="dni"
-              #dni="ngModel"
-            />
-            <div
-              class="alert alert-danger"
-              *ngIf="dni.invalid && (dni.dirty || dni.touched)"
-            >
-              <div *ngIf="dni.errors.required">dni es requerido</div>
-            </div>
+<mat-card>
+  <form #clienteFrom="ngForm">
+    <div class="form-row">
+      <div class="col">
+        <label for="ruc">Ruc</label>
+        <input type="text" class="form-control" [(ngModel)]="cliente.ruc" name="ruc" #ruc="ngModel" />
+        <div class="alert alert-danger" *ngIf="ruc.invalid && (ruc.dirty || ruc.touched)">
+          <div *ngIf="nombre.errors.required">Nombre es requerido</div>
+          <div *ngIf="nombre.errors.minlength">
+            Nombre debe tener al menos 4 caracteres
           </div>
         </div>
+      </div>
 
-        <div class="form-row p-3">
-          <div class="col">
-            <label for="telefono">Telefono</label>
-            <input
-              type="text"
-              class="form-control"
-              [(ngModel)]="cliente.telefono"
-              name="telefono"
-              #telefono="ngModel"
-            />
-            <div
-              class="alert alert-danger"
-              *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)"
-            >
-              <div *ngIf="telefono.errors.required">Telefono es requerido</div>
-            </div>
-          </div>
-
-          <div class="col">
-            <label for="distrito">Distrito</label>
-            <select
-              [compareWith]="compararDistrito"
-              class="form-control"
-              [(ngModel)]="cliente.distrito"
-              name="distrito"
-            >
-              <option [ngValue]="undefined">
-                --- selecionar una distrito ---
-              </option>
-              <option *ngFor="let distrito of distritos" [ngValue]="distrito">
-                {{ distrito.nombre }}
-              </option>
-            </select>
-          </div>
-
-          <div class="col">
-            <label for="fecha">Fecha de Nacimiento</label>
-            <input
-              type="date"
-              class="form-control"
-              [(ngModel)]="cliente.fecha"
-              name="fecha"
-              #fecha="ngModel"
-            />
+      <div class="col">
+        <label for="nombre">Nombre</label>
+        <input type="text" class="form-control" [(ngModel)]="cliente.nombre" name="nombre" #nombre="ngModel"/>
+        <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+          <div *ngIf="nombre.errors.required">Nombre es requerido</div>
+          <div *ngIf="nombre.errors.minlength">
+            Nombre debe tener al menos 4 caracteres
           </div>
         </div>
-
-        <div class="form-group row">
-          <div class="col p-3">
-            <button
-              class="btn btn-info"
-              role="button"
-              (click)="create()"
-              *ngIf="!cliente.id; else elseBlock"
-              [disabled]="!clienteFrom.form.valid"
-            >
-              <span class="fa fa-check-square"> Crear</span>
-            </button>
-
-            <ng-template #elseBlock>
-              <button
-                class="btn btn-info"
-                role="button"
-                (click)="update()"
-                [disabled]="!clienteFrom.form.valid"
-              >
-                <span class="fa fa-refresh"> Actualizar</span>
-              </button>
-            </ng-template>
-          </div>
-        </div>
-      </form>
+      </div>
     </div>
-    <div class="card-footer text-muted">2020</div>
-  </div>
-</div>
+
+    <br />
+
+    <div class="form-row">
+      <div class="col">
+        <label for="apellido">Apellido</label>
+        <input type="text" class="form-control" [(ngModel)]="cliente.apellido" name="apellido" #apellido="ngModel" />
+        <div class="alert alert-danger" *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)">
+          <div *ngIf="apellido.errors.required">apellido es requerido</div>
+        </div>
+      </div>
+
+      <div class="col">
+        <label for="fecha">Fecha de Nacimiento</label>
+        <input type="date" class="form-control" [(ngModel)]="cliente.fecha" name="fecha" #fecha="ngModel" />
+      </div>
+    </div>
+    <br />
+
+    <div class="form-row">
+      <div class="col">
+        <label for="dni">DNI</label>
+        <input type="text" class="form-control" [(ngModel)]="cliente.dni" name="dni" #dni="ngModel" />
+        <div class="alert alert-danger" *ngIf="dni.invalid && (dni.dirty || dni.touched)">
+          <div *ngIf="dni.errors.required">dni es requerido</div>
+        </div>
+      </div>
+
+      <div class="col">
+        <label for="direccion">Dirección</label>
+        <input type="text" class="form-control" [(ngModel)]="cliente.direccion" name="direccion" #direccion="ngModel" />
+        <div class="alert alert-danger" *ngIf="direccion.invalid && (direccion.dirty || direccion.touched)">
+          <div *ngIf="direccion.errors.required">direccion es requerido</div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="form-row">
+      <div class="col">
+        <label for="telefono">Telefono</label>
+        <input type="text" class="form-control" [(ngModel)]="cliente.telefono" name="telefono" #telefono="ngModel" />
+        <div class="alert alert-danger" *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)">
+          <div *ngIf="telefono.errors.required">Telefono es requerido</div>
+        </div>
+      </div>
+
+      <div class="col">
+        <label for="email">Correo</label>
+        <input type="text" class="form-control" [(ngModel)]="cliente.email" name="email" #email="ngModel" />
+        <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+          <div *ngIf="email.errors.required">email es requerido</div>
+        </div>
+      </div>
+
+      <div class="col">
+        <label for="distrito">Distrito</label>
+        <select [compareWith]="compararDistrito" class="form-control" [(ngModel)]="cliente.distrito" name="distrito">
+          <option [ngValue]="undefined">--- selecionar una distrito ---</option>
+          <option *ngFor="let distrito of distritos" [ngValue]="distrito">
+            {{ distrito.nombre }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="text-center p-3">
+      <button class="btn btn-info" role="button" (click)="create()" *ngIf="!cliente.id; else elseBlock"
+        [disabled]="!clienteFrom.form.valid">
+        <span class="fa fa-check-square"> Crear Cliente</span>
+      </button>
+
+      <ng-template #elseBlock>
+        <button class="btn btn-info" role="button" (click)="update()" [disabled]="!clienteFrom.form.valid">
+          <span class="fa fa-refresh"> Actualizar Cliente</span>
+        </button>
+      </ng-template>
+    </div>
+  </form>
+</mat-card>

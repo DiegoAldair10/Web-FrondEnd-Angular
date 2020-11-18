@@ -10,7 +10,7 @@ import { Distrito } from './detalle/distrito';
   providedIn: 'root',
 })
 export class ClientesService {
-  private urlEndPoint: string = 'http://localhost:8080/sistema/clientes';
+  private urlEndPoint: string = 'http://localhost:8086/sistema/clientes';
 
   constructor(private http: HttpClient, private router: Router) {}
 

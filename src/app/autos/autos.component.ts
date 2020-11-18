@@ -7,6 +7,7 @@ import { ModalService } from '.././Modal/modal.service';
 
 import Swal from 'sweetalert2';
 import { Clientes } from '../clientes/clientes';
+import { AuthService } from '../usuarios/auth.service';
 
 @Component({
   selector: 'app-autos',
@@ -17,12 +18,11 @@ export class AutosComponent implements OnInit {
   autos: Autos[];
   paginador: any;
   autoSeleccionado: Autos;
-  
-  
 
   constructor(
     private autosServicio: AutosService,
     private modalService: ModalService,
+    public authService: AuthService,
     private activateRoute: ActivatedRoute
   ) {}
 

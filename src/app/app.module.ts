@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
@@ -16,38 +17,42 @@ import { FromCliComponent } from './clientes/fromCli.component';
 import { PaginatorClientesComponent } from './paginator-clientes/paginator-clientes.component';
 
 /*NG Boostratp */
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 /*Material*/
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { MatTableModule } from '@angular/material/table';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 import { registerLocaleData } from '@angular/common';
 import localeES from '@angular/common/locales/es';
 import { FacturasComponent } from './facturas/facturas.component';
 import { DetalleFacturaComponent } from './facturas/detalle-factura.component';
 import { DetalleClienteComponent } from './clientes/detalle/detalle-cliente.component';
+import { ListadoFacturaComponent } from './facturas/listado-factura/listado-factura.component';
+import { PaginatorFacturasComponent } from './paginator-facturas/paginator-facturas.component';
+import { ClientesService } from './clientes/clientes.service';
+import { LoginComponent } from './usuarios/login.component';
+
+import { TokenInterceptor } from './usuarios/interceptors/token.interceptor';
+import { AuthInterceptor } from './usuarios/interceptors/auth.interceptor';
 
 registerLocaleData(localeES, 'es');
-
-const routes: Routes = [
-  { path: '', redirectTo: '/autos', pathMatch: 'full' },
-  { path: 'autos', component: AutosComponent },
-  { path: 'autos/page/:page', component: AutosComponent },
-  { path: 'autos/form', component: FormComponent },
-  { path: 'autos/form/:id', component: FormComponent },
-  { path: 'clientes', component: ClientesComponent },
-  { path: 'clientes/page/:page', component: ClientesComponent },
-  { path: 'clientes/form', component: FromCliComponent },
-  { path: 'clientes/form/:id', component: FromCliComponent },
-  { path: 'facturas/:id', component: DetalleFacturaComponent },
-  { path: 'facturas/form/:clienteId', component: FacturasComponent },
-];
 
 @NgModule({
   declarations: [
@@ -63,13 +68,16 @@ const routes: Routes = [
     PaginatorClientesComponent,
     DetalleFacturaComponent,
     DetalleClienteComponent,
-    FacturasComponent
+    FacturasComponent,
+    ListadoFacturaComponent,
+    PaginatorFacturasComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes),
-    NgbModule,
+    RouterModule, //.forRoot(routes),
     HttpClientModule,
+    AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
     MatDatepickerModule,
@@ -78,8 +86,28 @@ const routes: Routes = [
     MatAutocompleteModule,
     MatInputModule,
     MatFormFieldModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatCardModule,
+    MatDialogModule,
+    MatMenuModule,
+    MatProgressBarModule
   ],
-  providers: [AutosService, { provide: LOCALE_ID, useValue: 'es' }],
+  providers: [
+    ClientesService,
+    AutosService,
+    { provide: LOCALE_ID, useValue: 'es' },
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
